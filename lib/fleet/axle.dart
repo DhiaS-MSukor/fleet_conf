@@ -6,7 +6,8 @@ class Axle {
   String size;
   final position;
 
-  Axle(this.position, this.drive, this.doubleFit, {this.size: ''});
+  Axle(this.position,
+      {this.drive: false, this.doubleFit: false, this.size: ''});
 
   Widget _dummyAxle() {
     return Container(
@@ -61,22 +62,65 @@ class Axle {
     return _axle(drive: drive, doubleFit: doubleFit);
   }
 
-  Widget showDetails() {
-    return Column(children: [
-      Text('Position $position'),
-      Row(children: [
+  StatefulWidget showDetails() {
+    return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+      return Column(children: [
+        Text('Position $position'),
         Row(children: [
-          Text('Driven axle'),
-          Switch(value: drive, onChanged: null)
+          Row(children: [
+            Text('Driven axle'),
+            Switch(
+              value: drive,
+              onChanged: (value) {
+                setState(() => drive = value);
+              },
+              activeColor: Colors.blue,
+            )
+          ]),
+          Row(children: [
+            Text('Double fit'),
+            Switch(
+              value: doubleFit,
+              onChanged: (value) {
+                setState(() => doubleFit = value);
+              },
+              activeColor: Colors.blue,
+            )
+          ]),
+          Container(
+            child: TextField(
+                decoration: InputDecoration(
+              labelText: 'size',
+            )),
+            width: 150,
+          ),
+          Container(
+            child: TextField(
+                decoration: InputDecoration(
+              labelText: 'brand',
+            )),
+            width: 150,
+          ),
+          Container(
+            child: TextField(
+                decoration: InputDecoration(
+              labelText: 'thread',
+            )),
+            width: 150,
+          ),
+          Container(
+            child: TextField(
+                decoration: InputDecoration(
+              labelText: 'serial number',
+            )),
+            width: 150,
+          ),
         ]),
-        Row(children: [
-          Text('Double fit'),
-          Switch(value: doubleFit, onChanged: null)
-        ]),
-      ]),
-      Row(
-        children: [],
-      )
-    ]);
+        Row(
+          children: [],
+        )
+      ]);
+    });
   }
 }

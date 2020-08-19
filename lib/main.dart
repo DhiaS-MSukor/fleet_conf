@@ -33,12 +33,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Fleet _fleet = Fleet('', [
     FleetBody([
-      Axle(1, false, false),
-      Axle(2, true, false),
-      Axle(3, true, true),
-      Axle(4, false, true),
+      Axle(1),
+      Axle(2, drive: true),
+      Axle(3, drive: true, doubleFit: true),
+      Axle(4, doubleFit: true),
     ]),
-  ]); 
+  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Center(
             child: Row(
-          children: [ 
-            _fleet.showConfs(), 
+          children: [
+            Container(width: 5),
+            _fleet.showConfs(),
+            Container(width: 5),
             _fleet.showDetails(),
           ],
         )));

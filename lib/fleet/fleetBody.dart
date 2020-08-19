@@ -17,6 +17,21 @@ class FleetBody {
   }
 
   Widget showDetails() {
-    return Column(children: axles.map((e) => e.showDetails()).toList());
+    return Column(children: [
+      Container(
+          child: Column(
+            children: axles.map((e) => e.showDetails()).toList(),
+          ),
+          decoration:
+              BoxDecoration(border: Border.all(color: Colors.black, width: 1))),
+      RaisedButton(
+        onPressed: null,
+        child: Text('Add Axle'),
+      )
+    ]);
+  }
+
+  String getConfiguration() {
+    return '';
   }
 }
